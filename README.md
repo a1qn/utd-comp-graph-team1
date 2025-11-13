@@ -9,7 +9,7 @@ Built with **Unity 3D (URP)** by a team of five students.
 ## Unity and Tools
 
 - **Engine**: Unity 3D (URP template)
-- **Recommended Version**: Unity 2022.3 LTS  
+- **Recommended Version**: Unity 6000.2.12f1
   All team members should use the same minor version to avoid scene and asset issues.
 - **Language**: C#
 - **Version Control**: Git + GitHub
