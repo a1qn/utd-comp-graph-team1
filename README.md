@@ -60,10 +60,5 @@ UTD-Parking-Simulator/
 │
 ├── Packages/
 ├── ProjectSettings/
-├── Docs/
-│   ├── PrefabPolicy.md
-│   ├── ProjectSetupChecklist.md
-│   └── PipelineConfig.md
-│
 ├── .gitignore
 └── README.md
