@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "utd-comp-graph-team1-main.slnx"
+    "dotnet.defaultSolution": "utd-comp-graph-team1.slnx"
 }
