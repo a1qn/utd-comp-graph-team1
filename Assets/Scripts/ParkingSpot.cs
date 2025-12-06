@@ -5,7 +5,7 @@ using UnityEngine;
 public class ParkingSpot : MonoBehaviour
 {
     [SerializeField] bool isTaken = false;
-    [SerializeField] ParkingType spotType;
+    [SerializeField] public ParkingType spotType;
     
 
     String playerString = "Player";
@@ -42,9 +42,9 @@ public class ParkingSpot : MonoBehaviour
             {
             
                 Player player = other.gameObject.GetComponentInParent<Player>();
-                //Debug.Log(player.ParkOptionAvailable);
-                if(player.ParkOptionAvailable){return;}
-
+                //Debug.Log( player.parkingIndex[spotType.spotName]);
+                if(player.ParkOptionAvailable || player.parkingIndex[spotType.spotName] > player.ParkingPassNum){return;}
+                
                 player.CurrentSpot = this;
                 player.ParkOptionAvailable = true;
                 //Debug.Log("PARK!");
@@ -56,16 +56,17 @@ public class ParkingSpot : MonoBehaviour
             }
         }
 
-        if (isTriggerAgent && other.gameObject.CompareTag(carString) && !isPlayerOnSpot)
+        if (isTriggerAgent && other.gameObject.CompareTag(carString) && !isPlayerOnSpot && !isTaken)
         {
-
+            
             CarAgent carAgent = other.gameObject.GetComponentInParent<CarAgent>();
             //Debug.Log(carAgent.CarID);
             if(carAgent.CarID == idToAccept)
             {
                 isTaken = true;
-                Debug.Log("Car is here:" + carAgent.CarType.name);
+                //Debug.Log("Car is here:" + carAgent.CarType.name);
                 GameObject carPrefab = carAgent.CarType;
+                //Debug.Log(carAgent.gameObject.name);
                 Destroy(carAgent.gameObject);
                 Transform carPointTran = transform.Find("Car Point");
                 GameObject car = Instantiate(carPrefab,carPointTran.position,Quaternion.identity);
@@ -85,7 +86,9 @@ public class ParkingSpot : MonoBehaviour
          if (!other.gameObject.CompareTag(playerString)){return;}
         
         Player player = other.gameObject.GetComponentInParent<Player>();
-        if(!isTaken && !isSpotAssigned){player.GetGameManager().ParkingSpots.Add(this);}
+        if(!isTaken && !isSpotAssigned && !player.GetGameManager().ParkingSpots.Contains(this)){
+            player.GetGameManager().ParkingSpots.Add(this);
+            }
         player.ParkOptionAvailable = false;
         isPlayerOnSpot = false;
         parkText.gameObject.SetActive(false);

@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     CarAgent carAgent = car.GetComponent<CarAgent>();
 
     //carAgent.CarType = selectedCar;
-
+    
     carAgent.CarID = idGenerator;
     selectedSpot.IdToAccept = idGenerator;
     idGenerator++;

@@ -15,7 +15,7 @@ public class StudentCross : MonoBehaviour
         if (other.CompareTag(playerString) && !isTriggered)
         {
             isTriggered = true;
-            Debug.Log("is triggered");
+            //Debug.Log("is triggered");
             // Activate students
             students.SetActive(true);
 
